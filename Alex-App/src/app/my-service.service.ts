@@ -7,6 +7,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class MyServiceService {
   baseUrl: string = `https://130132ee-94fa-4470-ae76-062094b6ec43.mock.pstmn.io/api/Members/Email`;
 
+  postUrl: string = `https://130132ee-94fa-4470-ae76-062094b6ec43.mock.pstmn.io/api/Members/Emails`;
+
   httpOptions = {
     headers: new HttpHeaders({
       "Content-Type": "application/json",
@@ -21,6 +23,6 @@ export class MyServiceService {
   }
 
   addMember(newMember) {
-    return this.http.post(this.baseUrl, newMember, this.httpOptions);
+    return this.http.post(this.postUrl, newMember, this.httpOptions);
   }
 }

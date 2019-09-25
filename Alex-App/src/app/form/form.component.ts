@@ -28,7 +28,7 @@ export class FormComponent implements OnInit {
     });
   }
 
-  onSubmit(newMember) {
+  onSubmit(newMember: any): void {
     this.myService.addMember(newMember.value).subscribe(
       data => {
         console.log(data);
