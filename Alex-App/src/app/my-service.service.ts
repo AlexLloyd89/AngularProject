@@ -16,8 +16,8 @@ export class MyServiceService {
 
   constructor(private http: HttpClient) {}
 
-  getMembers() {
-    return this.http.get(this.baseUrl, this.httpOptions).toPromise();
+  getMembers(): Promise<any> {
+    return this.http.get<any>(this.baseUrl, this.httpOptions).toPromise();
   }
 
   addMember(newMember) {
