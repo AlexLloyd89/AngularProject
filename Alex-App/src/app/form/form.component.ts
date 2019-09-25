@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
+import { MyServiceService } from "../my-service.service";
 
 @Component({
   selector: "app-form",
@@ -16,7 +17,7 @@ export class FormComponent implements OnInit {
   ];
   checked: boolean = true;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private myService: MyServiceService) {}
 
   ngOnInit() {
     this.myForm = this.fb.group({
@@ -27,7 +28,14 @@ export class FormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log(this.myForm.value);
+  onSubmit(newMember) {
+    this.myService.addMember(newMember.value).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }

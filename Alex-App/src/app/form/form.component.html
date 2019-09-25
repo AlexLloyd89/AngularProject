@@ -7,9 +7,11 @@
     />
   </mat-form-field>
 
-  <mat-slide-toggle formControlName="isPrimary" [checked]="checked"
-    >Is this your primary email?</mat-slide-toggle
-  >
+  <mat-slide-toggle
+    formControlName="isPrimary"
+    [checked]="checked"
+  ></mat-slide-toggle>
+  <mat-label>Primary Email?</mat-label>
 
   <mat-form-field class="example-full-width">
     <mat-label>Email ID</mat-label>
@@ -29,6 +31,6 @@
   </mat-form-field>
 
   <button type="submit" [disabled]="!myForm.valid" mat-button color="primary">
-    {{ myForm.valid ? "Submit " : "Disabled" }}
+    {{ myForm.valid ? "Submit " : "Missing Information" }}
   </button>
 </form>
