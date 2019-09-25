@@ -4,6 +4,7 @@ import { HomeComponent } from "./home/home.component";
 import { NotComponent } from "./lazyOrNot/not/not.component";
 import { LazyComponent } from "./lazyOrNot/lazy/lazy.component";
 import { FormComponent } from "./form/form.component";
+import { ListComponent } from "./list/list.component";
 
 const routes: Routes = [
   //Home route
@@ -23,7 +24,11 @@ const routes: Routes = [
       }
     ]
   },
+  //Form route
   { path: "form", component: FormComponent },
+  //List route
+  { path: "list", component: ListComponent },
+  //Catch all
   { path: "**", redirectTo: "" }
 ];
 

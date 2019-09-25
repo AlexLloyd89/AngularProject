@@ -1,1 +1,34 @@
-<mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" class="example-form">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Email (required)"
+      formControlName="emailAddress"
+    />
+  </mat-form-field>
+
+  <mat-slide-toggle formControlName="isPrimary" [checked]="checked"
+    >Is this your primary email?</mat-slide-toggle
+  >
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Email ID</mat-label>
+    <mat-select formControlName="emailTypeId">
+      <mat-option *ngFor="let item of selectValues" [value]="item.value">
+        {{ item.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <textarea
+      matInput
+      placeholder="Description"
+      formControlName="description"
+    ></textarea>
+  </mat-form-field>
+
+  <button type="submit" [disabled]="!myForm.valid" mat-button color="primary">
+    {{ myForm.valid ? "Submit " : "Disabled" }}
+  </button>
+</form>

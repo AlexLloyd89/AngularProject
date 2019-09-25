@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -12,8 +13,12 @@ import { FormComponent } from "./form/form.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 //Material Imports
-import { MatSliderModule } from "@angular/material/slider";
-
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatSelectModule } from "@angular/material/select";
+import { MatButtonModule } from "@angular/material/button";
+import { ListComponent } from './list/list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,13 +26,19 @@ import { MatSliderModule } from "@angular/material/slider";
     LazyComponent,
     NotComponent,
     NavigationComponent,
-    FormComponent
+    FormComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
