@@ -18,13 +18,14 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
+import { LazyModule } from "./lazy/lazy.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LazyComponent,
-    NotComponent,
+    // LazyComponent,
+    // NotComponent,
     NavigationComponent,
     FormComponent,
     ListComponent
@@ -32,6 +33,7 @@ import { MatButtonModule } from "@angular/material/button";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    // LazyModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

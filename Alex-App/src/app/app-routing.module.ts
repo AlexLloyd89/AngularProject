@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
-import { NotComponent } from "./lazyOrNot/not/not.component";
-import { LazyComponent } from "./lazyOrNot/lazy/lazy.component";
+// import { NotComponent } from "./lazyOrNot/not/not.component";
+// import { LazyComponent } from "./lazyOrNot/lazy/lazy.component";
 import { FormComponent } from "./form/form.component";
 import { ListComponent } from "./list/list.component";
 
@@ -16,13 +16,13 @@ const routes: Routes = [
   //Lazy & non-lazy route
   {
     path: "not",
-    component: NotComponent,
-    children: [
-      {
-        path: "lazy",
-        component: LazyComponent
-      }
-    ]
+    loadChildren: () => import(`./lazy/lazy.module`).then(m => m.LazyModule)
+    // children: [
+    //   {
+    //     path: "lazy",
+    //     component: LazyComponent
+    //   }
+    // ]
   },
   //Form route
   { path: "form", component: FormComponent },
