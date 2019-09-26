@@ -9,29 +9,34 @@ import { MyServiceService } from "../my-service.service";
 })
 export class FormComponent implements OnInit {
   myForm: FormGroup;
+  newMember = {
+    emailAddress: ""
+  };
 
   selectValues: any[] = [
     { value: "0", viewValue: "867" },
     { value: "1", viewValue: "5309" },
-    { value: "2", viewValue: "1234" }
+    { value: "2", viewValue: "666" }
   ];
-  checked: boolean = true;
+  checked: boolean = false;
 
   constructor(private fb: FormBuilder, private myService: MyServiceService) {}
 
   ngOnInit() {
     this.myForm = this.fb.group({
       emailAddress: ["", [Validators.required, Validators.email]],
-      isPrimary: [true, Validators.required],
+      isPrimary: [false, Validators.required],
       emailTypeId: [null],
-      description: [""]
+      description: ["", Validators.maxLength(50)]
     });
   }
 
   onSubmit(newMember: any): void {
     this.myService.addMember(newMember.value).subscribe(
-      data => {
-        console.log(data);
+      (data: any) => {
+        this.newMember = {
+          emailAddress: data.emailAddress
+        };
       },
       error => {
         console.log(error);

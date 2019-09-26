@@ -13,16 +13,14 @@ export class ListComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      const getStuff = await this.myService.getMembers();
+      const getMembers = await this.myService.getMembers();
 
-      for (let i = 0; i < getStuff.data.length; i++) {
-        let unArr = getStuff.data[i].emailAddress;
-        console.log(unArr);
-      }
-      console.log(getStuff);
+      getMembers.data.sort((a, b) =>
+        a.emailAddress.localeCompare(b.emailAddress)
+      );
 
       // .then(res => (this.members = res.data), err => console.log(err));
-      return (this.members = getStuff.data);
+      return (this.members = getMembers.data);
     } catch (e) {
       return console.log(e);
     }

@@ -7,11 +7,14 @@
     />
   </mat-form-field>
 
-  <mat-slide-toggle
-    formControlName="isPrimary"
-    [checked]="checked"
-  ></mat-slide-toggle>
-  <mat-label>Primary Email?</mat-label>
+  <div class="someSpace">
+    <mat-label>Primary Email?</mat-label>
+    <mat-slide-toggle
+      required
+      formControlName="isPrimary"
+      [checked]="checked"
+    ></mat-slide-toggle>
+  </div>
 
   <mat-form-field class="example-full-width">
     <mat-label>Email ID</mat-label>
@@ -25,12 +28,19 @@
   <mat-form-field class="example-full-width">
     <textarea
       matInput
-      placeholder="Description"
+      placeholder="Description (50 characters max)"
       formControlName="description"
     ></textarea>
   </mat-form-field>
 
-  <button type="submit" [disabled]="!myForm.valid" mat-button color="primary">
-    {{ myForm.valid ? "Submit " : "Missing Information" }}
+  <button
+    type="submit"
+    [disabled]="!myForm.valid"
+    mat-flat-button
+    color="primary"
+  >
+    {{ myForm.valid ? "Submit" : "Missing Information" }}
   </button>
 </form>
+
+<div style="padding-top: 20px">Newest Member: {{ newMember.emailAddress }}</div>

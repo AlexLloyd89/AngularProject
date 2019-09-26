@@ -7,3 +7,9 @@
 .example-full-width {
   width: 100%;
 }
+
+.someSpace {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
