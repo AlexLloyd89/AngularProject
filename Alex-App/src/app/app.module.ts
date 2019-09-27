@@ -6,8 +6,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ListComponent } from "./list/list.component";
 import { HomeComponent } from "./home/home.component";
-import { LazyComponent } from "./lazyOrNot/lazy/lazy.component";
-import { NotComponent } from "./lazyOrNot/not/not.component";
 import { NavigationComponent } from "./navigation/navigation.component";
 import { FormComponent } from "./form/form.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -23,8 +21,6 @@ import { MatButtonModule } from "@angular/material/button";
   declarations: [
     AppComponent,
     HomeComponent,
-    LazyComponent,
-    NotComponent,
     NavigationComponent,
     FormComponent,
     ListComponent

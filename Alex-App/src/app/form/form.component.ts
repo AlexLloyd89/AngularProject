@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { MyServiceService } from "../my-service.service";
+import { EmailIdValues } from "../models/emailIdValues.model";
+import { NewMember } from "../models/newMember.model";
 
 @Component({
   selector: "app-form",
@@ -9,29 +11,36 @@ import { MyServiceService } from "../my-service.service";
 })
 export class FormComponent implements OnInit {
   myForm: FormGroup;
+  newMember: NewMember = {
+    emailAddress: "",
+    isPrimary: false
+  };
 
-  selectValues: any[] = [
+  selectValues: EmailIdValues[] = [
     { value: "0", viewValue: "867" },
     { value: "1", viewValue: "5309" },
-    { value: "2", viewValue: "1234" }
+    { value: "2", viewValue: "666" }
   ];
-  checked: boolean = true;
+  checked: boolean = false;
 
   constructor(private fb: FormBuilder, private myService: MyServiceService) {}
 
   ngOnInit() {
     this.myForm = this.fb.group({
       emailAddress: ["", [Validators.required, Validators.email]],
-      isPrimary: [true, Validators.required],
+      isPrimary: [false, Validators.required],
       emailTypeId: [null],
-      description: [""]
+      description: ["", Validators.maxLength(50)]
     });
   }
 
-  onSubmit(newMember: any): void {
+  onSubmit(newMember: FormGroup): void {
     this.myService.addMember(newMember.value).subscribe(
-      data => {
-        console.log(data);
+      (data: NewMember) => {
+        this.newMember = {
+          emailAddress: data.emailAddress,
+          isPrimary: data.isPrimary
+        };
       },
       error => {
         console.log(error);
