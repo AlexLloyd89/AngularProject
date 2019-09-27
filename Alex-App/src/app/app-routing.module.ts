@@ -14,7 +14,7 @@ const routes: Routes = [
   //Lazy
   {
     path: "not",
-    loadChildren: () => import(`./lazy/lazy.module`).then(m => m.LazyModule)
+    loadChildren: "./lazy/lazy.module#LazyModule"
   },
   //Form route
   { path: "form", component: FormComponent },

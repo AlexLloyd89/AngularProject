@@ -1,6 +1,6 @@
 <h2>List of members</h2>
 
-<p *ngIf="!this.members">Loading...</p>
+<p *ngIf="!members">Loading...</p>
 
 <p *ngFor="let member of members">
   Email: {{ member.emailAddress }}, Primary Email?: {{ member.isPrimary }},

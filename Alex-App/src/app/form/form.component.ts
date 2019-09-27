@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Validators, FormBuilder, FormGroup } from "@angular/forms";
+import { Validators, FormControl, FormGroup } from "@angular/forms";
 import { MyServiceService } from "../my-service.service";
 import { EmailIdValues } from "../models/emailIdValues.model";
 import { NewMember } from "../models/newMember.model";
@@ -7,11 +7,11 @@ import { NewMember } from "../models/newMember.model";
 @Component({
   selector: "app-form",
   templateUrl: "./form.component.html",
-  styleUrls: ["./form.component.css"]
+  styleUrls: ["./form.component.scss"]
 })
 export class FormComponent implements OnInit {
   myForm: FormGroup;
-  newMember: NewMember = {
+  newestMember: NewMember = {
     emailAddress: "",
     isPrimary: false
   };
@@ -23,28 +23,27 @@ export class FormComponent implements OnInit {
   ];
   checked: boolean = false;
 
-  constructor(private fb: FormBuilder, private myService: MyServiceService) {}
+  constructor(private myService: MyServiceService) {}
 
   ngOnInit() {
-    this.myForm = this.fb.group({
-      emailAddress: ["", [Validators.required, Validators.email]],
-      isPrimary: [false, Validators.required],
-      emailTypeId: [null],
-      description: ["", Validators.maxLength(50)]
+    this.myForm = new FormGroup({
+      emailAddress: new FormControl("", [
+        Validators.required,
+        Validators.email
+      ]),
+      isPrimary: new FormControl(false, Validators.required),
+      emailTypeId: new FormControl(null),
+      description: new FormControl("", Validators.maxLength(50))
     });
   }
 
-  onSubmit(newMember: FormGroup): void {
-    this.myService.addMember(newMember.value).subscribe(
-      (data: NewMember) => {
-        this.newMember = {
-          emailAddress: data.emailAddress,
-          isPrimary: data.isPrimary
-        };
-      },
-      error => {
-        console.log(error);
-      }
-    );
+  async onSubmit(memberInfo: FormGroup): Promise<any> {
+    try {
+      return (this.newestMember = await this.myService.addMember(
+        memberInfo.getRawValue()
+      ));
+    } catch (err) {
+      alert("sorry, an error has occured");
+    }
   }
 }

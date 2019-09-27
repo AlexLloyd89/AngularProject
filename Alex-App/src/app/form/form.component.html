@@ -7,7 +7,7 @@
     />
   </mat-form-field>
 
-  <div class="someSpace">
+  <div class="some-space">
     <mat-label>Primary Email?</mat-label>
     <mat-slide-toggle
       required
@@ -19,7 +19,7 @@
   <mat-form-field class="example-full-width">
     <mat-label>Email ID</mat-label>
     <mat-select formControlName="emailTypeId">
-      <mat-option *ngFor="let item of selectValues" [value]="item.value">
+      <mat-option *ngFor="let item of selectValues" [value]="item?.value">
         {{ item.viewValue }}
       </mat-option>
     </mat-select>
@@ -43,6 +43,6 @@
   </button>
 </form>
 
-<div style="padding-top: 20px">
-  <p>Newest Member: {{ newMember.emailAddress }}</p>
+<div class="new-member">
+  <p>Newest Member: {{ newestMember.emailAddress }}</p>
 </div>

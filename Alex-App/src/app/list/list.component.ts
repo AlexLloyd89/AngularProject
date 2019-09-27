@@ -5,7 +5,7 @@ import { Member } from "../models/member.model";
 @Component({
   selector: "app-list",
   templateUrl: "./list.component.html",
-  styleUrls: ["./list.component.css"]
+  styleUrls: ["./list.component.scss"]
 })
 export class ListComponent implements OnInit {
   members: Member[];
@@ -16,18 +16,20 @@ export class ListComponent implements OnInit {
     this.fetchMembers();
   }
 
-  async fetchMembers(): Promise<Member | void> {
+  async fetchMembers(): Promise<Member[] | null> {
     try {
+      const notSorted = await this.myService.getMembers();
+      console.log(notSorted.data);
+
       const getMembers = await this.myService.getMembers();
 
-      getMembers.data.sort((a, b) =>
+      this.members = getMembers.data.sort((a, b) =>
         a.emailAddress.localeCompare(b.emailAddress)
       );
 
-      // .then(res => (this.members = res.data), err => console.log(err));
-      return (this.members = getMembers.data);
-    } catch (e) {
-      return console.log(e);
+      return this.members;
+    } catch (err) {
+      alert("sorry, an error has occured");
     }
   }
 }
