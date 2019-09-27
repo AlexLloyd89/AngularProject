@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { NewMember } from "./models/newMember.model";
 
 @Injectable({
   providedIn: "root"
@@ -22,7 +23,7 @@ export class MyServiceService {
     return this.http.get<any>(this.baseUrl, this.httpOptions).toPromise();
   }
 
-  addMember(newMember) {
+  addMember(newMember: NewMember) {
     return this.http.post(this.postUrl, newMember, this.httpOptions);
   }
 }

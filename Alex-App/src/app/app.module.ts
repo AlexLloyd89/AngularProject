@@ -6,8 +6,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ListComponent } from "./list/list.component";
 import { HomeComponent } from "./home/home.component";
-import { LazyComponent } from "./lazyOrNot/lazy/lazy.component";
-import { NotComponent } from "./lazyOrNot/not/not.component";
 import { NavigationComponent } from "./navigation/navigation.component";
 import { FormComponent } from "./form/form.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -18,14 +16,11 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
-import { LazyModule } from "./lazy/lazy.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    // LazyComponent,
-    // NotComponent,
     NavigationComponent,
     FormComponent,
     ListComponent
@@ -33,7 +28,6 @@ import { LazyModule } from "./lazy/lazy.module";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // LazyModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

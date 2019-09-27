@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { MyServiceService } from "../my-service.service";
+import { EmailIdValues } from "../models/emailIdValues.model";
+import { NewMember } from "../models/newMember.model";
 
 @Component({
   selector: "app-form",
@@ -9,11 +11,12 @@ import { MyServiceService } from "../my-service.service";
 })
 export class FormComponent implements OnInit {
   myForm: FormGroup;
-  newMember = {
-    emailAddress: ""
+  newMember: NewMember = {
+    emailAddress: "",
+    isPrimary: false
   };
 
-  selectValues: any[] = [
+  selectValues: EmailIdValues[] = [
     { value: "0", viewValue: "867" },
     { value: "1", viewValue: "5309" },
     { value: "2", viewValue: "666" }
@@ -31,11 +34,12 @@ export class FormComponent implements OnInit {
     });
   }
 
-  onSubmit(newMember: any): void {
+  onSubmit(newMember: FormGroup): void {
     this.myService.addMember(newMember.value).subscribe(
-      (data: any) => {
+      (data: NewMember) => {
         this.newMember = {
-          emailAddress: data.emailAddress
+          emailAddress: data.emailAddress,
+          isPrimary: data.isPrimary
         };
       },
       error => {

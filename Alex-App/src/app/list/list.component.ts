@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MyServiceService } from "../my-service.service";
+import { Member } from "../models/member.model";
 
 @Component({
   selector: "app-list",
@@ -7,11 +8,15 @@ import { MyServiceService } from "../my-service.service";
   styleUrls: ["./list.component.css"]
 })
 export class ListComponent implements OnInit {
-  members: Object[];
+  members: Member[];
 
   constructor(private myService: MyServiceService) {}
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.fetchMembers();
+  }
+
+  async fetchMembers(): Promise<Member | void> {
     try {
       const getMembers = await this.myService.getMembers();
 

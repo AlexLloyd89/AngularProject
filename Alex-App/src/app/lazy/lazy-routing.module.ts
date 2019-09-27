@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { NotComponent } from "../lazyOrNot/not/not.component";
-import { LazyComponent } from "../lazyOrNot/lazy/lazy.component";
+import { NotComponent } from "./lazyOrNot/not/not.component";
+import { LazyComponent } from "./lazyOrNot/lazy/lazy.component";
 
 const routes: Routes = [
   //Lazy route
