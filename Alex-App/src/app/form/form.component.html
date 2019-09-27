@@ -1,0 +1,48 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" class="example-form">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Email (required)"
+      formControlName="emailAddress"
+    />
+  </mat-form-field>
+
+  <div class="some-space">
+    <mat-label>Primary Email?</mat-label>
+    <mat-slide-toggle
+      required
+      formControlName="isPrimary"
+      [checked]="checked"
+    ></mat-slide-toggle>
+  </div>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Email ID</mat-label>
+    <mat-select formControlName="emailTypeId">
+      <mat-option *ngFor="let item of selectValues" [value]="item?.value">
+        {{ item.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <textarea
+      matInput
+      placeholder="Description (50 characters max)"
+      formControlName="description"
+    ></textarea>
+  </mat-form-field>
+
+  <button
+    type="submit"
+    [disabled]="!myForm.valid"
+    mat-flat-button
+    color="primary"
+  >
+    {{ myForm.valid ? "Submit" : "Missing Information" }}
+  </button>
+</form>
+
+<div class="new-member">
+  <p>Newest Member: {{ newestMember.emailAddress }}</p>
+</div>
